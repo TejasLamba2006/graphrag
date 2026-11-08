@@ -93,7 +93,7 @@ def read_indexer_reports(
         nodes_df.loc[:, "community"] = nodes_df["community"].fillna(-1)
         nodes_df.loc[:, "community"] = nodes_df["community"].astype(int)
 
-        nodes_df = nodes_df.groupby(["title"]).agg({"community": "max"}).reset_index()
+        nodes_df = nodes_df.groupby(["entity_ids"]).agg({"community": "max"}).reset_index()
         filtered_community_df = nodes_df["community"].drop_duplicates()
 
         reports_df = reports_df.merge(
